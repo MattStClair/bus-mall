@@ -4,7 +4,7 @@ function Image(number) {
   this.name = number;
   this.source = 'images/' + this.name + '.jpg';
   this.timesShown = 0;//counts time an image is shown
-  this.timesClicked = 0;
+  this.timesClicked = 0;//counts clicks
   Image.all.push(this);
 }
 
@@ -33,30 +33,48 @@ function randomImage(){   //add 'e' in again to make if statement work
   Image.all[randomIndex].timesShown += 1;
   Image.all[randomIndex].timesClicked += 1;
   console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + ' times' + ' and clicked: ' + Image.all[randomIndex].timesClicked);
+
+  randomImage1();
+
+  randomImage2();
+
 }
 
 function randomImage1(){
   var randomIndex1 = Math.floor(Math.random() * Image.all.length);
   Image.imgEl1.src = Image.all[randomIndex1].source;
-  Image.imgEl2.alt = Image.all[randomIndex1].name;
-
+  Image.imgEl1.alt = Image.all[randomIndex1].name;
   Image.all[randomIndex1].timesShown += 1;
   Image.all[randomIndex1].timesClicked += 1;
   console.log(Image.all[randomIndex1].name + ' has been shown ' + Image.all[randomIndex1].timesShown + ' times' + ' and clicked: ' + Image.all[randomIndex1].timesClicked);
+  randomImage();
+  randomImage2();
+
+}
+function randomImage2(){
+  var randomIndex2 = Math.floor(Math.random() * Image.all.length);
+  Image.imgEl2.src = Image.all[randomIndex2].source;
+  Image.imgEl2.alt = Image.all[randomIndex2].name;
+  Image.all[randomIndex2].timesShown += 1;
+  Image.all[randomIndex2].timesClicked += 1;
+  console.log(Image.all[randomIndex2].name + ' has been shown ' + Image.all[randomIndex2].timesShown + ' times' + ' and clicked: ' + Image.all[randomIndex2].timesClicked);
+  randomImage();
+
+  randomImage1();
+
 }
 
 
-
 document.getElementById('the_image').addEventListener('click', randomImage);
+document.getElementById('the_image1').addEventListener('click', randomImage1);//this clicked changes image0
+document.getElementById('the_image2').addEventListener('click', randomImage2);
 
-document.getElementById('the_image2').addEventListener('click', randomImage);
-
-
-randomImage();
-
-randomImage1();
-
-
+// randomImage();
+//
+// randomImage1();
+//
+// randomImage2();
+//
 
 
 
