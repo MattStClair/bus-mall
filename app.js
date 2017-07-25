@@ -14,6 +14,10 @@ ProductImage.all = []; //array for my images
 
 ProductImage.allNames = ['bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'tauntaun', 'unicorn', 'water-can', 'wine-glass'];//pushed into array
 
+ProductImage.clickArray = [];//array for chart
+ProductImage.namesChartArray = []; //array for ch
+
+
 var previouslyShown = [];
 
 for(var i = 0; i < ProductImage.allNames.length; i++){
@@ -46,19 +50,20 @@ console.log(previouslyShown, 'previouslyShown images');
     numbers[2] = makeRandomNumber();
     console.log('dup found');
   }
-  ProductImage.leftImage.src = ProductImage.all[numbers[0]].source;
+  ProductImage.leftImage.src = ProductImage.all[numbers[0]].source; //source of the array element, includes file path
   ProductImage.centerImage.src = ProductImage.all[numbers[1]].source;
   ProductImage.rightImage.src = ProductImage.all[numbers[2]].source;
-  ProductImage.leftImage.alt = ProductImage.all[numbers[0]].name;
+  ProductImage.leftImage.alt = ProductImage.all[numbers[0]].name;//just shows the name
   ProductImage.centerImage.alt = ProductImage.all[numbers[1]].name;
   ProductImage.rightImage.alt = ProductImage.all[numbers[2]].name;
   ProductImage.all[numbers[0]].amountOfShows += 1;
   ProductImage.all[numbers[1]].amountOfShows += 1;
   ProductImage.all[numbers[2]].amountOfShows += 1;
   previouslyShown = numbers;
-  //myChart.labels.push(ProductImage.name);
+
 
 }
+
 
 function showList(){
   var ulEl = document.getElementById('thelist');
@@ -75,21 +80,23 @@ function showList(){
 
 function handleClick(e){
   ProductImage.totalClicks += 1;
+  //ProductImage.clickArray.push();
   console.log(ProductImage.totalClicks);
   for(var i = 0; i < ProductImage.all.length; i ++)
   {
     if(e.target.alt === ProductImage.all[i].name){
       ProductImage.all[i].timesClicked += 1;
+      ProductImage.clickArray[i] = ProductImage.all[i].timesClicked;
     }
   }
-  if(ProductImage.totalClicks === 3){
+  if(ProductImage.totalClicks === 25){
     ProductImage.container.removeEventListener('click', handleClick);
     //set source attributes to zero
     return showList();
-
   }
   console.log(e.target.alt);
   displayImages();
+  //pushNamesAndClicks();
   ///--------where to push clicks and images?
 }
 
@@ -101,7 +108,7 @@ ProductImage.container.addEventListener('click', handleClick);
 
 //what I would like to use to deal with the clicks/
 
-
+function createChart () {
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
@@ -109,7 +116,7 @@ var myChart = new Chart(ctx, {
     labels: ProductImage.allNames,//push names of images
     datasets: [{
       label: '# of Clicks',
-      data: [3,4,5,6],//push times clicked
+      data:  ProductImage.clickArray,//ProductImage.clickArray,//push times clicked
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -139,3 +146,6 @@ var myChart = new Chart(ctx, {
     }
   }
 });
+}
+
+document.getElementById('chartButton').addEventListener('click', createChart);

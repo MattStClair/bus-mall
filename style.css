@@ -1,6 +1,6 @@
 body {
   font-family: Helvetica, sans-serif;
-  background-color: gray
+  background-color: tan;
 }
 
 img {
@@ -9,7 +9,7 @@ img {
   margin: 30px;
 }
 
-#funky-chart{
+#myChart{
 
-  border: 2px dotted black; 
+  border: 2px dotted black;
 }
