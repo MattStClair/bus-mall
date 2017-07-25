@@ -1,82 +1,89 @@
 'use strict';
 
-function Image(number) {
+function ProductImage(number) {
   this.name = number;
   this.source = 'images/' + this.name + '.jpg';
   this.timesShown = 0;//counts time an image is shown
-  this.timesClicked = 0;//counts clicks
-  Image.all.push(this);
+  this.timesEachImageClicked = 0;
+  ProductImage.all.push(this);
 }
 
-Image.all = []; //array for my images
+//var timesCycled = 0;//counts clicks
 
-Image.allNames = ['bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep'];//pushed into array
+ProductImage.all = []; //array for my images
 
-for(var i = 0; i < Image.allNames.length; i++){ //loop through the number of image names and create object of new image with
-                                                // new image from all names array
+ProductImage.allNames = ['bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'tauntaun', 'unicorn', 'water-can', 'wine-glass'];//pushed into array
 
-  new Image(Image.allNames[i]); //creates new object with images from all names array
+for(var i = 0; i < ProductImage.allNames.length; i++){ //loop through the number of image names and create object of new image with
+  // new image from all names array
+  new ProductImage(ProductImage.allNames[i]); //creates new object with images from all names array
 }
+// if(timesCycled > 2){
+// alert('you are out of clicks');
+// //display a list of the products..
+// document.getElementById('the_image').removeEventListener('click', randomImage);
+// document.getElementById('the_image1').removeEventListener('click', randomImage1);
+// document.getElementById('the_image2').removeEventListener('click', randomImage2);
+// }
 
-Image.imgEl = document.getElementById('the_image');//gets element id from image 0 spot
-Image.imgEl1 = document.getElementById('the_image1'); //gets element id from image 1 spot
-Image.imgEl2 = document.getElementById('the_image2');//gets element id from image 2 spot
 
-function randomImage(){   //add 'e' in again to make if statement work
-  // console.log(e.target.alt);
-  // if(e.target.alt === 'nine'){ ////this would be where I would stop re occurences, if e.target.alt === e.target.alt then run random again
-  //   alert('OMG A BABY GOAT');
-  // }
-  var randomIndex = Math.floor(Math.random() * Image.all.length);
-  Image.imgEl.src = Image.all[randomIndex].source;
-  Image.imgEl.alt = Image.all[randomIndex].name; ///changes image0
-  Image.all[randomIndex].timesShown += 1;
-  Image.all[randomIndex].timesClicked += 1;
-  console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + ' times' + ' and clicked: ' + Image.all[randomIndex].timesClicked);
+ ProductImage.imgEl = document.getElementById('the_image');//gets element id from image 0 spot
+ ProductImage.imgEl1 = document.getElementById('the_image1'); //gets element id from image 1 spot
+ ProductImage.imgEl2 = document.getElementById('the_image2');
 
-  randomImage1();
+function randomImage() {
+    var randomIndex = Math.floor(Math.random() * ProductImage.all.length);
+    ProductImage.imgEl.src = ProductImage.all[randomIndex].source;
+    ProductImage.imgEl.alt = ProductImage.all[randomIndex].name; ///changes image0
+    ProductImage.all[randomIndex].timesShown += 1;
+    ProductImage.all[randomIndex].timesEachImageClicked += 1;
+    console.log(ProductImage.all[randomIndex].name + ' has been shown ' + ProductImage.all[randomIndex].timesShown + ' times' + ' and clicked: ' + ProductImage.all[randomIndex].timesEachImageClicked);
+    //event for clicking 0/---------------------------------------
+  }
 
-  randomImage2();
+  function randomImage1(){
+    var randomIndex1 = Math.floor(Math.random() * ProductImage.all.length);
+    ProductImage.imgEl1.src = ProductImage.all[randomIndex1].source;
+    ProductImage.imgEl1.alt = ProductImage.all[randomIndex1].name;
+    ProductImage.all[randomIndex1].timesShown += 1;
+    ProductImage.all[randomIndex1].timesEachImageClicked += 1;
+    console.log(ProductImage.all[randomIndex1].name + ' has been shown ' + ProductImage.all[randomIndex1].timesShown + ' times' + ' and clicked: ' + ProductImage.all[randomIndex1].timesEachImageClicked);
+    //random image for one---------------------------------------
+  }
 
-}
+  function randomImage2(){
+    var randomIndex2 = Math.floor(Math.random() * ProductImage.all.length);
+    ProductImage.imgEl2.src = ProductImage.all[randomIndex2].source;
+    ProductImage.imgEl2.alt = ProductImage.all[randomIndex2].name;
+    ProductImage.all[randomIndex2].timesShown += 1;
+    ProductImage.all[randomIndex2].timesEachImageClicked += 1;
+    console.log(ProductImage.all[randomIndex2].name + ' has been shown ' + ProductImage.all[randomIndex2].timesShown + ' times' + ' and clicked: ' + ProductImage.all[randomIndex2].timesEachImageClicked);
+    //random images for two-------------------------------
+  }
+//  timesCycled++;
 
-function randomImage1(){
-  var randomIndex1 = Math.floor(Math.random() * Image.all.length);
-  Image.imgEl1.src = Image.all[randomIndex1].source;
-  Image.imgEl1.alt = Image.all[randomIndex1].name;
-  Image.all[randomIndex1].timesShown += 1;
-  Image.all[randomIndex1].timesClicked += 1;
-  console.log(Image.all[randomIndex1].name + ' has been shown ' + Image.all[randomIndex1].timesShown + ' times' + ' and clicked: ' + Image.all[randomIndex1].timesClicked);
-  randomImage();
-  randomImage2();
-
-}
-function randomImage2(){
-  var randomIndex2 = Math.floor(Math.random() * Image.all.length);
-  Image.imgEl2.src = Image.all[randomIndex2].source;
-  Image.imgEl2.alt = Image.all[randomIndex2].name;
-  Image.all[randomIndex2].timesShown += 1;
-  Image.all[randomIndex2].timesClicked += 1;
-  console.log(Image.all[randomIndex2].name + ' has been shown ' + Image.all[randomIndex2].timesShown + ' times' + ' and clicked: ' + Image.all[randomIndex2].timesClicked);
-  randomImage();
-
-  randomImage1();
-
-}
+//end of if else statement for 25
 
 
 document.getElementById('the_image').addEventListener('click', randomImage);
-document.getElementById('the_image1').addEventListener('click', randomImage1);//this clicked changes image0
+document.getElementById('the_image1').addEventListener('click', randomImage);
+document.getElementById('the_image2').addEventListener('click', randomImage);
+
+document.getElementById('the_image').addEventListener('click', randomImage1);
+document.getElementById('the_image1').addEventListener('click', randomImage1);
+document.getElementById('the_image2').addEventListener('click', randomImage1);
+
+
+//
+document.getElementById('the_image').addEventListener('click', randomImage2);
+document.getElementById('the_image1').addEventListener('click', randomImage2);
 document.getElementById('the_image2').addEventListener('click', randomImage2);
-
-// randomImage();
 //
-// randomImage1();
+randomImage();
 //
-// randomImage2();
-//
+randomImage1();
 
-
+randomImage2();
 
 
 //what I would like to use to deal with the clicks/
