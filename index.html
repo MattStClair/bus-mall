@@ -4,17 +4,22 @@
  <head>
   <meta charset="UTF-8">
   <title>track the clicks of images</title>
+  <script src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js'> </script>
   <link rel="stylesheet" type="text/css" href="style.css">
  </head>
 
  <body>
-  <h1>Let's display some random images and track some clicks!</h1>
+    <h1>Let's display some random images and track some clicks!</h1>
 
-  <section>
-    <img id="the_image" src="images/bag.jpg" />
-    <img id="the_image1" src="images/banana.jpg" />
-    <img id="the_image2" src="images/bathroom.jpg" />
+  <section id = "imageContainer">
+    <img id="left" />
+    <img id="center" />
+    <img id="right"/>
   </section>
+
+  <ul id = "thelist"> </ul>
+
+  <canvas id ="myChart" width ="800" height="400"> </canvas>
 
 
   <script src="app.js"></script>

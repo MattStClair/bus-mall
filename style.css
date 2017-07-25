@@ -8,3 +8,8 @@ img {
   height: 300px;
   margin: 30px;
 }
+
+#funky-chart{
+
+  border: 2px dotted black; 
+}
